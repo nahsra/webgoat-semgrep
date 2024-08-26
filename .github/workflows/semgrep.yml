@@ -1,9 +1,12 @@
 name: Semgrep Scan and Push to Pixee
 on:
   push
+permissions:
+  contents: read
+  id-token: write
 jobs:
   semgrep-sast-scan:
-    name: semgrep sast scan
+    name: Semgrep Scan and Push
     runs-on: ubuntu-latest
     container:
       image: returntocorp/semgrep
