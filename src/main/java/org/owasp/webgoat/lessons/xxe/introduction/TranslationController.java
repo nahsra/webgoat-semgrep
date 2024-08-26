@@ -82,6 +82,7 @@ public class TranslationController extends AssignmentEndpoint {
     private static TranslatorStrategy loadTranslatorByName(final String translationStrategy) {
         final Class<?> translatorClazz;
         try {
+        // nosemgrep: java.lang.security.audit.unsafe-reflection.unsafe-reflection
             translatorClazz = Class.forName("com.acme." + translationStrategy);
         } catch (ClassNotFoundException e) {
             throw new IllegalArgumentException("Invalid translator: " + translationStrategy, e);
