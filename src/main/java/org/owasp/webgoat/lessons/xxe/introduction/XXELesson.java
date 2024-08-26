@@ -60,6 +60,7 @@ public class XXELesson extends AssignmentEndpoint {
       withDomButDisabled(xml);
       withReaderFactory(xml);
 
+      Class<?> c = Class.forName(xml);
       return "OK";
   }
 
