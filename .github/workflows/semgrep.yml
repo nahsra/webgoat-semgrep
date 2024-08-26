@@ -17,6 +17,7 @@ jobs:
       - name: Run Semgrep Scan
         run: |
           mkdir -p semgrep/results
+          semgrep --version
           semgrep --config auto . --sarif -o semgrep/results/semgrep.sarif
       - name: Upload Semgrep Results to Pixee
         uses: pixee/upload-tool-results-action@v2
