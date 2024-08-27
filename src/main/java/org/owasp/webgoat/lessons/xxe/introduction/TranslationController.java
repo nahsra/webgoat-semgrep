@@ -22,6 +22,7 @@
 
 package org.owasp.webgoat.lessons.xxe.introduction;
 
+import io.github.pixee.security.BoundedLineReader;
 import io.github.pixee.security.HostValidator;
 import io.github.pixee.security.Urls;
 import org.owasp.webgoat.container.assignments.AssignmentEndpoint;
@@ -51,7 +52,7 @@ public class TranslationController extends AssignmentEndpoint {
             // Read the response
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String inputLine;
-            while ((inputLine = in.readLine()) != null) {
+            while ((inputLine = BoundedLineReader.readLine(in, 5_000_000)) != null) {
                 content.append(inputLine);
             }
 
