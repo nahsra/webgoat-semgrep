@@ -22,6 +22,7 @@
 
 package org.owasp.webgoat.lessons.xxe.introduction;
 
+import io.github.pixee.security.BoundedLineReader;
 import org.owasp.webgoat.container.assignments.AssignmentEndpoint;
 import org.springframework.web.bind.annotation.*;
 
@@ -49,7 +50,7 @@ public class TranslationController extends AssignmentEndpoint {
             // Read the response
             BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
             String inputLine;
-            while ((inputLine = in.readLine()) != null) {
+            while ((inputLine = BoundedLineReader.readLine(in, 5_000_000)) != null) {
                 content.append(inputLine);
             }
 
