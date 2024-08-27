@@ -23,6 +23,8 @@
 package org.owasp.webgoat.lessons.xxe.introduction;
 
 import io.github.pixee.security.BoundedLineReader;
+import io.github.pixee.security.HostValidator;
+import io.github.pixee.security.Urls;
 import org.owasp.webgoat.container.assignments.AssignmentEndpoint;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,7 +43,7 @@ public class TranslationController extends AssignmentEndpoint {
         StringBuilder content = new StringBuilder();
         try {
             // get the content
-            URL url = new URL(host + "/content/original");
+            URL url = Urls.create(host + "/content/original", Urls.HTTP_PROTOCOLS, HostValidator.DENY_COMMON_INFRASTRUCTURE_TARGETS);
 
             // Open a connection to the URL
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
